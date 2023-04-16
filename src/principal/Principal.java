@@ -28,6 +28,9 @@ public class Principal {
 			escolhaOpcao(opcao);
 
 		} while (!opcao.equals("5"));
+
+		System.out.println("Fim do programa!");
+		sc.close();
 	}
 
 	private static void escolhaOpcao(String opcao) {
