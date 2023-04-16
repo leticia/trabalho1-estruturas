@@ -4,49 +4,50 @@ import java.util.Scanner;
 
 /**
  * 
- * @author Jessica Figueira e Mell Matsuda 
+ * @author Jessica Figueira e Mell Matsuda
  *
  */
 
 public class Principal {
-	
+	private static ListaCircular lista;
+
 	public static void main(String[] args) {
-		System.out.println("Por favor, escolha uma opção:\n");
-		System.out.println("1) Inserir valores na pilha, fila e lista circular;\n");
-		System.out.println("2) Remover valores da pilha, fila e lista circular;\n");
-		System.out.println("3) Imprimir valores da pilha, fila e lista circular;\n");
-		System.out.println("4) Pesquisar valores na pilha, fila e lista circular.\n->");
-		
 		Scanner sc = new Scanner(System.in);
-		String opcao = sc.next();
-		
-		escolhaOpcao(opcao);
+		lista = new ListaCircular();
+		String opcao;
+
+		do {
+			System.out.println("\n Por favor, escolha uma opção:\n");
+			System.out.println("1) Inserir valores na pilha, fila e lista circular;\n");
+			System.out.println("2) Remover valores da pilha, fila e lista circular;\n");
+			System.out.println("3) Imprimir valores da pilha, fila e lista circular;\n");
+			System.out.println("4) Pesquisar valores na pilha, fila e lista circular.\n");
+			System.out.println("5) Sair\n => ");
+
+			opcao = sc.next();
+			escolhaOpcao(opcao);
+
+		} while (!opcao.equals("5"));
 	}
 
 	private static void escolhaOpcao(String opcao) {
-		switch(opcao) {
+		switch (opcao) {
 		case "1":
-			ListaCircular lista = new ListaCircular();
 			lista.inserirValor(1);
 			lista.inserirValor(2);
 			lista.inserirValor(3);
-			lista.inserirValor(4);
-			lista.inserirValor(5);
-			lista.removerValor(3);
-			lista.pesquisarValor(3);
-			lista.pesquisarValor(2);
-			lista.imprimirLista();
 			break;
 		case "2":
-			System.out.println("olá");
+			lista.removerValor(2);
 			break;
 		case "3":
+			lista.imprimirLista();
 			break;
 		case "4":
+			lista.pesquisarValor(2);
+			break;
+		default:
 			break;
 		}
 	}
-	
-	
-
 }
