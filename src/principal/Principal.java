@@ -10,11 +10,14 @@ import java.util.Scanner;
 
 public class Principal {
 	private static ListaCircular lista;
+	private static Pilha pilha;
 
 	public static void main(String[] args) {
+		String opcao;
+
 		Scanner sc = new Scanner(System.in);
 		lista = new ListaCircular();
-		String opcao;
+		pilha = new Pilha();
 
 		do {
 			System.out.println("\n Por favor, escolha uma opção:\n");
@@ -39,15 +42,25 @@ public class Principal {
 			lista.inserirValor(1);
 			lista.inserirValor(2);
 			lista.inserirValor(3);
+
+			pilha.inserirValor(1);
+			pilha.inserirValor(2);
+			pilha.inserirValor(3);
 			break;
 		case "2":
 			lista.removerValor(2);
+
+			pilha.remover();
 			break;
 		case "3":
 			lista.imprimirLista();
+
+			pilha.imprimir();
 			break;
 		case "4":
 			lista.pesquisarValor(2);
+
+			pilha.pesquisarValor(3);
 			break;
 		default:
 			break;
