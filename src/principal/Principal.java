@@ -26,7 +26,16 @@ public class Principal {
 	private static void escolhaOpcao(String opcao) {
 		switch(opcao) {
 		case "1":
-			System.out.println("oi");
+			ListaCircular lista = new ListaCircular();
+			lista.inserirValor(1);
+			lista.inserirValor(2);
+			lista.inserirValor(3);
+			lista.inserirValor(4);
+			lista.inserirValor(5);
+			lista.removerValor(3);
+			lista.pesquisarValor(3);
+			lista.pesquisarValor(2);
+			lista.imprimirLista();
 			break;
 		case "2":
 			System.out.println("olá");
