@@ -17,18 +17,27 @@ public class Principal {
 		System.out.println("3) Imprimir valores da pilha, fila e lista circular;\n");
 		System.out.println("4) Pesquisar valores na pilha, fila e lista circular.\n->");
 		
-		escolheOpcao();
-	}
-	
-	private static void escolheOpcao() {
 		Scanner sc = new Scanner(System.in);
 		String opcao = sc.next();
 		
-		if (opcao == null) {
-			System.out.println("Escolha uma opção!");
-		}
-		
-		System.out.println(opcao);
+		escolhaOpcao(opcao);
 	}
+
+	private static void escolhaOpcao(String opcao) {
+		switch(opcao) {
+		case "1":
+			System.out.println("oi");
+			break;
+		case "2":
+			System.out.println("olá");
+			break;
+		case "3":
+			break;
+		case "4":
+			break;
+		}
+	}
+	
+	
 
 }
