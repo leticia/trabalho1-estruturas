@@ -1,38 +1,45 @@
 package principal;
 
-import java.util.LinkedList;
-
 public class Pilha {
-	private LinkedList<Integer> pilha;
 
-	public Pilha() {
-		pilha = new LinkedList<>();
+	private class Nodo {
+		int valor;
+		Nodo anterior;
 	}
 
+	private Nodo topo;
+
 	protected void inserirValor(int valor) {
-		pilha.addFirst(valor);
+		Nodo anterior = topo;
+		topo = new Nodo();
+		topo.valor = valor;
+		topo.anterior = anterior;
 	}
 
 	protected void remover() {
-		pilha.removeFirst();
+		if (topo != null) {
+			topo = topo.anterior;
+		}
 	}
 
 	protected void imprimir() {
-		for (int valor : pilha) {
-			System.out.print(valor + " ");
+		Nodo nodo = topo;
+		while (nodo != null) {
+			System.out.print(nodo.valor + " ");
+			nodo = nodo.anterior;
 		}
-
 		System.out.println();
 	}
 
 	protected void pesquisarValor(int valor) {
-		for (int dado : pilha) {
-			if (dado == valor) {
+		Nodo nodo = topo;
+		while (nodo != null) {
+			if (nodo.valor == valor) {
 				System.out.println("Encontrei o valor " + valor);
 				return;
 			}
+			nodo = nodo.anterior;
 		}
-
 		System.out.println("Não encontrei o valor " + valor);
 	}
 }
