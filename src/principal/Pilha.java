@@ -30,21 +30,20 @@ public class Pilha {
 			System.out.print(nodo.valor + " ");
 			nodo = nodo.anterior;
 		}
-		System.out.print("\n\tTotal de nodos: " + total);
-		System.out.println();
+		System.out.println("\n\tTotal de nodos: " + total);
 	}
 	
 	protected void pesquisarValor(int valor) {
 		Nodo nodo = topo;
-		int count = total;
+		int contador = total;
 		
 		while (nodo != null) {
 			if (nodo.valor == valor) {
-				System.out.println("\n\t" + valor + " encontrado na posicao " + count + "!");
+				System.out.println("\n\t" + valor + " encontrado na posicao " + contador + "!");
 				return;
 			}
 			nodo = nodo.anterior;
-			count--;
+			contador--;
 		}
 		System.out.println("\n\t" + valor + " nao encontrado na pilha!");
 	}

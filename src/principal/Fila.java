@@ -35,22 +35,21 @@ public class Fila {
 			System.out.print(nodo.valor + " ");
 			nodo = nodo.proximo;
 		}
-		System.out.print("\n\tTotal de nodos: " + total);
-		System.out.println();
+		System.out.println("\n\tTotal de nodos: " + total);
 	}
 	
 	public void pesquisarValor(int valor) {
 		Nodo nodo = primeiro;
-		int count = 1;
+		int contador = 1;
 		
 		while (nodo != null) {
 			if (nodo.valor == valor) {
-				System.out.println("\n\t" + valor + " encontrado na posicao " + count + "!");
+				System.out.println("\n\t" + valor + " encontrado na posicao " + contador + "!");
 				return;
 			}
 			
 			nodo = nodo.proximo;
-			count++;
+			contador++;
 		}
 		System.out.println("\n\t" + valor + " nao encontrado na fila!");
 	}

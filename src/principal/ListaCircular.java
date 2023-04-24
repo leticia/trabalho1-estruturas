@@ -2,6 +2,7 @@ package principal;
 
 public class ListaCircular {
 	private Nodo inicio;
+	private Nodo fim;
 	private int tamanho;
 
 	private class Nodo {
@@ -16,6 +17,7 @@ public class ListaCircular {
 
 	public ListaCircular() {
 		inicio = null;
+		fim = null;
 		tamanho = 0;
 	}
 
@@ -25,28 +27,28 @@ public class ListaCircular {
 		if (inicio == null) {
 			inicio = nodo;
 			inicio.proximo = inicio;
+			fim = inicio;
 		} else {
-			Nodo atual = inicio;
-			
-			while (atual.proximo != inicio) {
-				atual = atual.proximo;
-			}
-			atual.proximo = nodo;
+			fim.proximo = nodo;
 			nodo.proximo = inicio;
+			fim = nodo;
 		}
+
 		tamanho++;
 		System.out.println("\n\t" + valor + " inserido na lista circular!");
 	}
-	
+
 	public void imprimir() {
 		Nodo atual = inicio;
-		
+
 		System.out.println("\n\tLISTA CIRCULAR");
 		System.out.print("\t");
-		
+
 		do {
-			System.out.print(atual.dado + " ");
-			atual = atual.proximo;
+			if (atual != null) {
+				System.out.print(atual.dado + " ");
+				atual = atual.proximo;
+			}
 		} while (atual != inicio);
 
 		System.out.println("\n\tTotal de nodos: " + tamanho);
@@ -54,68 +56,68 @@ public class ListaCircular {
 	}
 
 	public boolean pesquisarValor(int valor) {
-	    Nodo atual = inicio;
-	    int count = 1;
+		Nodo atual = inicio;
 
-	    if (inicio == null) {
-	    	System.out.println("Esta lista está vazia!");
-	        return false;
-	    } else {
-	        do {
-	            if (atual.dado == valor) {
-	            	System.out.println("\n\t" + valor + " encontrado na posicao " + count + "!");
-	                return true;
-	            }
+		int contador = 1;
+		if (inicio == null) {
+			System.out.println("Esta lista está vazia!");
+			return false;
+		} else {
+			do {
+				if (atual.dado == valor) {
+					System.out.println("\n\t" + valor + " encontrado na posicao " + contador + "!");
+					return true;
+				}
 
-	            atual = atual.proximo;
-	            count++;
-	            
-	        } while (atual != inicio);
-	        
-	        System.out.println("\n\t" + valor + " nao encontrado na lista circular!");
-	        return false;
-	    }
+				atual = atual.proximo;
+				contador++;
+
+			} while (atual != inicio);
+
+			System.out.println("\n\t" + valor + " nao encontrado na lista circular!");
+			return false;
+		}
 	}
-	
+
 	public void remover(int valor) {
 		if (inicio == null) {
+			System.out.println("A lista está vazia!");
 			return;
 		}
 
+		// Inicialização dos nodos
 		Nodo atual = inicio;
-		Nodo anterior = null;
+		Nodo anterior = fim;
 
+		// Percorre a lista
 		while (atual.dado != valor) {
+			// Se terminou de percorrer a lista e não encontrou o valor
 			if (atual.proximo == inicio) {
+				System.out.println("Valor não encontrado para remoção!");
 				return;
 			}
+
 			anterior = atual;
 			atual = atual.proximo;
 		}
 
-		if (atual == inicio && atual.proximo == inicio) {
+		/*
+		 * O próximo valor do nodo anterior precisa apontar para o próximo valor do nodo
+		 * atual => remoção
+		 */
+		anterior.proximo = atual.proximo;
+
+		if (anterior == atual) {
 			inicio = null;
-			return;
-		}
-
-		if (atual == inicio) {
-			Nodo fim = inicio;
-			while (fim.proximo != inicio) {
-				fim = fim.proximo;
-			}
-			inicio = inicio.proximo;
+			fim = null;
+		} else if (atual == inicio) {
+			inicio = atual.proximo;
 			fim.proximo = inicio;
-			tamanho--;
-		} else if (atual.proximo == inicio) {
-			anterior.proximo = inicio;
-		} else {
-			anterior.proximo = atual.proximo;
+		} else if (atual == fim) {
+			fim = anterior;
 		}
-		tamanho--;
-		System.out.print("\n\t" + valor + " removido da lista circular!");
-	}
 
-	public int getTamanho() {
-		return tamanho;
+		tamanho--;
+		System.out.println("\n\t" + valor + " removido da lista circular!");
 	}
 }
