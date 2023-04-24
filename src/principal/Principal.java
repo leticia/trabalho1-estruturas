@@ -1,5 +1,6 @@
 package principal;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /* @author Jessica Figueira e Mell Matsuda */
@@ -20,12 +21,17 @@ public class Principal {
 		lista = new ListaCircular();
 		
 		do {
-			escolhaLista();	
-			
-			if (tipo != null) {
-				do {
-					escolhaAcao();
-				} while (opcaoAcao != 0);
+			// Trata erros de entrada
+			try {
+				escolhaLista();
+
+				if (tipo != null) {
+					do {
+						escolhaAcao();
+					} while (opcaoAcao != 0);
+				}
+			} catch (InputMismatchException e) {
+				System.out.println("\nEntrada inválida!");
 			}
 			
 		} while (opcaoLista != 0);
